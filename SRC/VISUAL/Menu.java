@@ -38,7 +38,7 @@ public class Menu {
         while(!cerrarMenu){
         
            if(2!=2){//reviso online para que se registre o se logee
-                System.out.println("### nombre RS ###");
+                System.out.println("### Bienvenido a Wibogram ###");
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. LOGEARSE");
                 System.out.println("2. REGISTRARSE");
@@ -67,7 +67,7 @@ public class Menu {
                     input.next();
                 }
             } else {
-                System.out.println("### NOMBRE RS###");//agregar nombre de la RS
+                System.out.println("### Bienvenido a Wibogram ###");//agregar nombre de la RS
                 System.out.println("## Registrado como: "+ "falta nick  A "+ " ##");//CAMBIAR A por el selector del user online (solo username)
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. Realizar publicación");
@@ -76,6 +76,7 @@ public class Menu {
                 System.out.println("4. Visualizar red social");
                 System.out.println("5. Cerrar sesión");
                 System.out.println("6. Salir del programa");
+
 
                 try {
                     System.out.println("Introduzca su opción: ");
