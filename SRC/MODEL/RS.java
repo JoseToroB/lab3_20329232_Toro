@@ -7,11 +7,11 @@ import java.util.ArrayList;
     */
 public class RS {
      //Atributos
-     private int cantPublis;
+     private Integer cantPublis;
      private ArrayList<Publicaciones> publis;
-     private int cantComents;
+     private Integer cantComents;
      private ArrayList<Comentario> coments; 
-     private int cantUsers;
+     private Integer cantUsers;
      private ArrayList<Usuarios> users;
      private Usuario userOn;
      private boolean conectado = false;
@@ -63,19 +63,19 @@ public class RS {
     /*
     * @return cantidad de publis
     */
-    public int getCantPublis() {
+    public Integer getCantPublis() {
         return cantPublis;
     }
     /*
     * @return cantidad de comentarios
     */
-    public int getCantComents() {
+    public Integer getCantComents() {
         return cantComents;
     }
      /*
     * @return cantidad de users
     */
-    public int getCantUsers() {
+    public Integer getCantUsers() {
         return cantUsers;
     }
     /*
@@ -90,7 +90,7 @@ public class RS {
     /*
     *@param cantidadPublicaciones
     */
-    public void setCantPublis(int cantPublis) {
+    public void setCantPublis(Integer cantPublis) {
         this.cantPublis = cantPublis;
     }
     /*
@@ -102,7 +102,7 @@ public class RS {
     /*
     *@param cantidadComentarios
     */
-    public void setCantComents(int cantComents) {
+    public void setCantComents(Integer cantComents) {
         this.cantComents = cantComents;
     }
     /*
@@ -114,7 +114,7 @@ public class RS {
     /*
     *@param cantidad usuarios
     */
-    public void setCantUsers(int cantUsers) {
+    public void setCantUsers(Integer cantUsers) {
         this.cantUsers = cantUsers;
     }
     /*
