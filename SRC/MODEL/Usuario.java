@@ -14,7 +14,7 @@ public class Usuario {
     private ArrayList<Publicaciones> publicacionesRealizadas;
     private ArrayList<Comentario> comentariosRealizados;
     private ArrayList<Usuario> Seguidos;
-
+    private ArrayList<Publicaciones> publicacionesCompartidas;
     //constructor
     public Usuario(String username, String password) {
         idUsuarios +=1;
@@ -22,6 +22,7 @@ public class Usuario {
         this.username = username;
         this.password = password;
         this.publicacionesRealizadas = new ArrayList();
+        this.publicacionesCompartidas = new ArrayList();
         this.comentariosRealizados = new ArrayList();
         this.Seguidos = new ArrayList();
     }

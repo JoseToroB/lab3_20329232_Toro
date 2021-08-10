@@ -15,6 +15,7 @@ public class Publicaciones {
     private Integer likesPubli;
     private Integer idPubli;
     private String tipoPubli;
+    private Integer cantCompartidas;
     //constructor
     public Publicaciones(ArrayList<String> etiquetados, String cuerpo, Usuario autor,String tipoPubli) {
         this.comentarioPubli = new ArrayList();
@@ -22,6 +23,7 @@ public class Publicaciones {
         this.cuerpoPubli = cuerpo;
         this.autorPubli = autor;
         this.likesPubli = 0;
+        this.cantCompartidas=0;
         this.tipoPubli=tipoPubli;
         idPublicaciones +=1;
         this.idPubli =idPublicaciones;

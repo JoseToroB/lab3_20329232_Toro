@@ -120,4 +120,92 @@ public class Control {
         //entrego un mensaje para que el usuario sepa que su publicacion fue agregada
         System.out.println("Publicado\n");
     }
+    /** 
+    * funcion que permite seguir a un usuario
+    * @param userAseguir nombre del user a seguir
+    */
+    //funcion  follow
+    public void follow(String userAseguir){
+        RS redS = getRedSocial();
+        Usuario online= redS.getUserOn();
+        //recorro la lista para saber si existe el usuario  a seguir
+        int i;
+        for (i = 0; i < redS.getUsers().size();i++){ 
+            if(redS.getUsers().get(i).getUsername().equals(userAseguir)) {
+                //si encuentro un usuario con ese nombre entonces seguire con el codigo
+                ArrayList<Usuario> lista= online.getSeguidos();
+                lista.add(redS.getUsers().get(i));
+                online.setSeguidos(lista); 
+                System.out.println("Ahora sigues al usuario "+redS.getUsers().get(i).getUsername()+" \n");
+                return;//utilizo el return para cerrar el ciclo
+            }
+        }
+        //si no encuentro el user entonces no hago nada
+        System.out.println("Usuario a seguir inexistente\n");
+    }
+    /** 
+    * funcion que permite compartir una publicacion
+    * @param idPost id del post que se quiere compartir
+    * @param etiquetados lista de gente con la que se comparte, como los etiquetados en facebook
+    */
+    //funcion share
+    public void share(Integer idPost,ArrayList<String> etiquetados){
+        RS redS = getRedSocial();
+        Usuario online= redS.getUserOn();
+        int i;
+        for (i = 0; i < redS.getPublis().size();i++){ 
+            if(redS.getPublis().get(i).getIdPubli()==idPost) {
+                //modifico la publicacion haciendo cantCompartidas+1
+
+                //la agrego a la lista de compartidos del usuario con la nueva fecha
+               
+                return;//utilizo el return para cerrar el ciclo
+            }
+        }
+        //si no encuentro el user entonces no hago nada
+        System.out.println("Publicacion inexistente\n");
+    }
+    /** 
+    * funcion que permite visualizar la red social
+    * esta funcion no requiere parametros para ser utilizada
+    */
+    /*
+    - SocialNetworkToString: Esta funcionalidad puede ser
+    ejecutada con sesión iniciada o sin ella. En caso de ejecutarla
+    con sesión iniciada debe entregar todos los elementos del
+    usuario con sesión activa (publicaciones, lista de follows,
+    reacciones, publicaciones compartidas, etc.) junto con los
+    detalles del usuario (nombre de usuario y fecha de creación
+    de cuenta. En caso de ejecutarla sin sesión iniciada, debe
+    entregar todo lo que haya en la red social (usuarios
+    registrados, listas de follows, publicaciones, etc.).
+    - PrintSocialNetwork: Debe imprimir en pantalla el string
+    obtenido de SocialNetworkToString en un formato
+    comprensible por el usuario. Evite imprimir datos sensibles
+    (como contraseñas).
+    */
+    //funcion visualize
+
+
+
+    //metodos extras//
+    
+
+    /** 
+    * funcion que permite comentar una publicacion o comentario
+    * @param idPublicacion id del post, 0 en caso de ser a comentario
+    * @param idComentario id del comentario, 0 en caso de ser a publicacion
+    * @param texto contenido del comentario
+    */
+    //funcion comment 
+    
+
+    /** 
+    * funcion que permite dar like a post o comentario
+    * @param idPublicacion id del post, 0 en caso de ser a comentario
+    * @param idComentario id del comentario, 0 en caso de ser a publicacion
+    */
+    //funcion like 
+    
+    ///////funcion isviral ista de publicaciones que complan con el criterio K
 }
