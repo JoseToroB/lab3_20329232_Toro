@@ -8,18 +8,21 @@ public class Publicaciones {
     //atributos
     private static Integer idPublicaciones=0;//ID AUTOINCREMENTAL 
     private ArrayList<Comentario> comentarioPubli;
+    private ArrayList<String> etiquetados;
     private String cuerpoPubli;
     private String fechaPubli;
     private Usuario autorPubli;
     private Integer likesPubli;
     private Integer idPubli;
-
+    private String tipoPubli;
     //constructor
-    public Publicaciones(ArrayList<Comentario> Comentarios, String cuerpo, String fecha, Usuario autor) {
-        this.comentarioPubli = Comentarios;
+    public Publicaciones(ArrayList<String> etiquetados, String cuerpo, Usuario autor,String tipoPubli) {
+        this.comentarioPubli = new ArrayList();
+        this.etiquetados=etiquetados;
         this.cuerpoPubli = cuerpo;
         this.autorPubli = autor;
         this.likesPubli = 0;
+        this.tipoPubli=tipoPubli;
         idPublicaciones +=1;
         this.idPubli =idPublicaciones;
         //OBTENER LA FECHA CON UTIL.DATE
@@ -75,12 +78,28 @@ public class Publicaciones {
     public void setIdPubli(Integer idPubli) {
         this.idPubli = idPubli;
     }
+
+    public ArrayList<Comentario> getComentarioPubli() {
+        return comentarioPubli;
+    }
+
+    public void setComentarioPubli(ArrayList<Comentario> comentarioPubli) {
+        this.comentarioPubli = comentarioPubli;
+    }
+
+    public String getTipoPubli() {
+        return tipoPubli;
+    }
+
+    public void setTipoPubli(String tipoPubli) {
+        this.tipoPubli = tipoPubli;
+    }
+
     //metodo agregarComentario
     public void agregarComentario(Comentario coment){
         ArrayList<Comentario> listComentarios_Publi=getComentariosPubli();
         listComentarios_Publi.add(coment);
         setComentariosPubli(listComentarios_Publi);
     }
-    
     
 }

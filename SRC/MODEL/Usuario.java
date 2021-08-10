@@ -1,8 +1,6 @@
 package MODEL;
 
 import java.util.ArrayList;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 /*
 *Clase usuario pertenece al modelo
 *@author Jose Toro
@@ -11,7 +9,6 @@ public class Usuario {
     //atributos
     private static Integer idUsuarios =0;
     private Integer idUser;
-    private String fechaRegistro;//quiza al momento de mostrar la RS utilizo la fecha de registro
     private String username;
     private String password;
     private ArrayList<Publicaciones> publicacionesRealizadas;
@@ -27,10 +24,6 @@ public class Usuario {
         this.publicacionesRealizadas = new ArrayList();
         this.comentariosRealizados = new ArrayList();
         this.Seguidos = new ArrayList();
-         //OBTENER LA FECHA CON UTIL.DATE
-         SimpleDateFormat tipoFecha = new SimpleDateFormat("dd/MM/yyyy");
-         Date date = new Date();
-        this.fechaRegistro = tipoFecha.format(date);
     }
     //getters y setters
     public Integer getIdUser() {
