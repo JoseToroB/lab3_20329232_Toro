@@ -1,7 +1,7 @@
 package MODEL;
 
 import java.util.ArrayList;
-/*
+/** 
 *Clase usuario pertenece al modelo
 *@author Jose Toro
 */
@@ -14,17 +14,17 @@ public class Usuario {
     private ArrayList<Publicaciones> publicacionesRealizadas;
     private ArrayList<Comentario> comentariosRealizados;
     private ArrayList<Usuario> Seguidos;
-    private ArrayList<Publicaciones> publicacionesCompartidas;
+    private ArrayList<Compartidas> publicacionesCompartidas;
     //constructor
     public Usuario(String username, String password) {
         idUsuarios +=1;
         this.idUser = idUsuarios;
         this.username = username;
         this.password = password;
-        this.publicacionesRealizadas = new ArrayList();
-        this.publicacionesCompartidas = new ArrayList();
-        this.comentariosRealizados = new ArrayList();
-        this.Seguidos = new ArrayList();
+        this.publicacionesRealizadas = new ArrayList<>();
+        this.publicacionesCompartidas =new ArrayList<>();
+        this.comentariosRealizados = new ArrayList<>();
+        this.Seguidos = new ArrayList<>();
     }
     //getters y setters
     public Integer getIdUser() {
@@ -71,9 +71,18 @@ public class Usuario {
         Seguidos = seguidos;
     }
 
+    public ArrayList<Compartidas> getPublicacionesCompartidas() {
+        return publicacionesCompartidas;
+    }
+
+    public void setPublicacionesCompartidas(ArrayList<Compartidas> publicacionesCompartidas) {
+        this.publicacionesCompartidas = publicacionesCompartidas;
+    }
+
     //metodos
     
-    /*
+     
+    /** 
      * Metodo que permite agregar una publicacion 
      * @param publi una publi
      */
@@ -83,7 +92,7 @@ public class Usuario {
         setPublicacionesRealizadas(listaPublisUser);
     }
 
-    /*
+    /** 
      * Metodo que permite agregar un comentario
      * @param coment un coment
      */
@@ -92,8 +101,18 @@ public class Usuario {
         listaComentsUser.add(coment);
         setComentariosRealizados(listaComentsUser);
     }
-    
-    /*
+    /** 
+     * Metodo que permite agregar una publicacion compartida 
+     * @param publicacion publicacion a agregar
+     * @param etiquetados con quien se comparte
+     */
+    public void agregarCompartidaUser(Publicaciones publicacion,ArrayList<String> etiquetados){
+        Compartidas comp=new Compartidas(publicacion,etiquetados);
+        ArrayList<Compartidas> lista= getPublicacionesCompartidas();
+        lista.add(comp);
+        setPublicacionesCompartidas(lista);
+    }
+    /** 
      * Metodo que permite agregar un seguido (user)
      * @param user un user
      */
@@ -101,6 +120,11 @@ public class Usuario {
         ArrayList<Usuario> listaSeguidosUser = getSeguidos();
         listaSeguidosUser.add(seguido);
         setSeguidos(listaSeguidosUser);
+    }
+    //usuario a string
+    public String userAstring(){
+
+        return "Nombre:"+username+" Tienes un total de:"+publicacionesRealizadas.size()+"publicaciones realizadas\ny un total de:"+Seguidos+" usuarios seguidos\n";
     }
 
 }

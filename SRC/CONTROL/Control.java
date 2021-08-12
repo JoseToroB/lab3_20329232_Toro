@@ -3,9 +3,7 @@ package CONTROL;
 import MODEL.*;
 
 import java.util.ArrayList;
-//import java.util.InputMismatchException;
-//import java.util.Scanner;
-/*
+/** 
 *clase  correspondiente al controlador
 *en esta clase esta la mayoria de metodos solicitados
 * @author jose toro
@@ -156,15 +154,19 @@ public class Control {
         for (i = 0; i < redS.getPublis().size();i++){ 
             if(redS.getPublis().get(i).getIdPubli()==idPost) {
                 //modifico la publicacion haciendo cantCompartidas+1
-
-                //la agrego a la lista de compartidos del usuario con la nueva fecha
-               
+                Publicaciones publi = redS.getPublis().get(i);
+                publi.aumentarComp();
+                redS.getPublis().set(i,publi);
+                //la agrego a la lista de compartidos del usuario
+                online.agregarCompartidaUser(publi, etiquetados);
+                redS.getUsers().set((online.getIdUser()-1), online);
                 return;//utilizo el return para cerrar el ciclo
             }
         }
         //si no encuentro el user entonces no hago nada
         System.out.println("Publicacion inexistente\n");
     }
+    
     /** 
     * funcion que permite visualizar la red social
     * esta funcion no requiere parametros para ser utilizada

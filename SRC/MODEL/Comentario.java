@@ -2,7 +2,7 @@ package MODEL;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/*
+/** 
 *Clase comentario pertence a model, contiene la struct de un comentario
 *@author Jose Toro
 */
@@ -26,6 +26,10 @@ public class Comentario{
         SimpleDateFormat tipoFecha = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         this.fechaComent = tipoFecha.format(date);
+    }
+    //to string de un comentario
+    public String comentarioAstring(){
+        return  "Autor: "+autorComent.getUsername()+" ID comentario: "+ idComent+" fecha:"+fechaComent+"\n"+cuerpoComent+"\n likes:"+likesComent+"\n";
     }
     //getters y setters
 
@@ -56,6 +60,10 @@ public class Comentario{
     public void setLikesComent(Integer likesComent) {
         this.likesComent = likesComent;
     }
-    
+    public void aumentarLikeComent(){
+        Integer n;
+        n= getLikesComent()+1;
+        setLikesComent(n);
+    }
    
 }

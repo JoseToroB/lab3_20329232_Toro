@@ -1,8 +1,10 @@
 package VISUAL;
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-/*
+import CONTROL.Control;
+/** 
  * Clase correspondiente a la parte del Visor.
  * Corresponde al menu principal del programa
  * Mediante el cual el usuario interactuara con el programa.
@@ -11,33 +13,38 @@ import java.util.Scanner;
 public class Menu {
     //Atributos
     //se tiene atributo un controlador para acceder a sus metodos
-
+    private Control controlador;
     //Constructor
     /**
      * Crea un menu, usando el controlador.
      * @param controller Instancia del controlador.
      */
-    public Menu(){
-
+    
+    public Menu(Control controlador) {
+        this.controlador = controlador;
     }
 
     //Getter
+    public Control getControlador() {
+        return controlador;
+    }
+
     //Metodos
 
     /**
-     * Inicia el menú, entonces el programa inicia su ejecución.
+     * Inicia el menu
      */
-    public void main(String[] args) {
+    public void desplegarMenu() {
         Scanner input = new Scanner(System.in);
         boolean cerrarMenu = false;
         int opcion;
-        /* 
-         String username;
-         String password;
-        */
+        String username;
+        String password;
+        Control ctrl = getControlador();
         while(!cerrarMenu){
         
-           if(2!=2){//reviso online para que se registre o se logee
+           if(!(ctrl.existeOnline())){//reviso online para que se registre o se loge
+            //si hay alguien online entonces omito lo del if y entro en el else
                 System.out.println("### Bienvenido a Wibogram ###");
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. LOGEARSE");
@@ -49,13 +56,28 @@ public class Menu {
                     opcion = input.nextInt();
                     switch (opcion){
                         case 1:
+                            System.out.println("Login\n");
+                            System.out.println("Ingrese su nombre de usuario:");
+                            input.nextLine();
+                            username = input.nextLine();
+                            System.out.println("Ingrese su contraseña:");
+                            password = input.nextLine();
+                            ctrl.login(username,password);
                             break;
 
                         case 2:
+                            System.out.println("Register\n");
+                            System.out.println("Ingrese su nombre de usuario:");
+                            input.nextLine();
+                            username = input.nextLine();
+                            System.out.println("Ingrese su contraseña:");
+                            password = input.nextLine();
+                            ctrl.register(username, password);
+                        
                             break;
 
                         case 3: //Salir del programa
-                            System.out.println("saliendo");
+                            System.out.println("Saliendo");
                             cerrarMenu = true;
                             break;
                         default:
@@ -68,7 +90,7 @@ public class Menu {
                 }
             } else {
                 System.out.println("### Bienvenido a Wibogram ###");//agregar nombre de la RS
-                System.out.println("## Registrado como: "+ "falta nick  A "+ " ##");//CAMBIAR A por el selector del user online (solo username)
+                System.out.println("## Registrado como: "+ ctrl.entregarOnline().getUsername()+ " ##");
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. Realizar publicación");
                 System.out.println("2. Seguir a un usuario");
@@ -83,28 +105,85 @@ public class Menu {
                     opcion = input.nextInt();
                     switch (opcion){
                         case 1: //publicar-> post
-                        //
-                            break;
+                            System.out.println("Ingrese el tipo de su Publicacion:");
+                            input.nextLine();
+                            String tipoPost = input.nextLine();
+                            System.out.println("Ingrese el contenido de su Publicacion:");
+                            input.nextLine();
+                            String contenido = input.nextLine();
+                            System.out.println("¿Cuantos etiquetados tendra?, 0 si no desea etiquetar a nadie");
+                            input.nextLine();
+                            Integer canEt = input.nextInt();
+                            if(canEt==0){
+                                //si no etiqueta creo la publicacion con etiquetaos vacios y listo
+                                ArrayList<String> et = new ArrayList<>();
+                                //Se llama a post 
+                                ctrl.post(tipoPost, contenido,et);
+                                break;
+                            }
+                            else{
+                                //si etiqueta creo una lista de tamanio cantET y agrego uno a uno los etiquetados
+                                int i;
+                                ArrayList<String> et = new ArrayList<>();
+                                for(i=0;i<canEt;i++){
+                                    System.out.println("Ingrese el nombre del usuario a etiquetar:");
+                                    input.nextLine();
+                                    String userET = input.nextLine();
+                                    et.add(userET);
+                                }
+                                //Se llama a post 
+                                ctrl.post(tipoPost, contenido,et);
+                                break;
+                            }
                         case 2://seguir -> follow
-                        //
+                            System.out.println("Ingrese el nombre del usuario a seguir:");
+                            input.nextLine();
+                            String userET = input.nextLine();
+                            ctrl.follow(userET);
                             break;
-                        case 3://compartir-share
-                        //
-                            break;
+                        case 3://compartir->share
+                        //  
+                            System.out.println("cual es la id del post que desea compartir:");
+                            input.nextLine();
+                            Integer idPost = input.nextInt();
+                            System.out.println("¿Cuantos etiquetados tendra?, 0 si no desea etiquetar a nadie:");
+                            input.nextLine();
+                            Integer canEt2 = input.nextInt();
+                            if(canEt2==0){
+                                //si no etiqueta creo la publicacion con etiquetaos vacios y listo
+                                ArrayList<String> et = new ArrayList<>();
+                                //////////////////////////
+                                ctrl.share(idPost, et);
+                                break;
+                            }
+                            else{
+                                //si etiqueta creo una lista de tamanio cantET y agrego uno a uno los etiquetados
+                                int i;
+                                ArrayList<String> et = new ArrayList<>();
+                                for(i=0;i<canEt2;i++){
+                                    System.out.println("Ingrese el nombre del usuario a etiquetar:");
+                                    input.nextLine();
+                                    String userET2 = input.nextLine();
+                                    et.add(userET2);
+                                }
+                                ctrl.share(idPost, et);
+                                break;
+                            }
                         case 4://visualuzar ->visualize
                         //
+                            System.out.println("visualize\n");
                             break;
                         case 5://cerrar sesion ->logout
-                            System.out.println("Sesion cerrada.");
+                            System.out.println("Sesion cerrada.\n");
                             //Logout
                            //llamar a log out
                             break;
                         case 6://salir del programa ->cerrar menu 
-                            System.out.println("Elegiste salir del programa");
+                            System.out.println("Elegiste salir del programa\n");
                             cerrarMenu = true;
                             break;
                         default:
-                            System.out.println("opcion no valida");
+                            System.out.println("opcion no valida\n");
                             break;
                     }
                 } catch (InputMismatchException e){
@@ -113,5 +192,9 @@ public class Menu {
                 }
             }
         }
+        input.close();
     }
+
+
+
 }
