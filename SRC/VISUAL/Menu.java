@@ -49,7 +49,8 @@ public class Menu {
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. LOGEARSE");
                 System.out.println("2. REGISTRARSE");
-                System.out.println("3. SALIR");
+                System.out.println("3. VISUALIZAR RED SOCIAL");
+                System.out.println("4. SALIR");
             
                 try {
                     System.out.println("Eliga una opcion ");
@@ -76,7 +77,10 @@ public class Menu {
                         
                             break;
 
-                        case 3: //Salir del programa
+                        case 3: //visualizar
+                            ctrl.visualize();
+                            break;
+                        case 4: //Salir del programa
                             System.out.println("Saliendo");
                             cerrarMenu = true;
                             break;
@@ -171,6 +175,7 @@ public class Menu {
                         case 4://visualuzar ->visualize
                             //
                             System.out.println("debo llamar a visualize\n");
+                            ctrl.visualize();
                             break;
                         case 5://cerrar sesion ->logout
                             System.out.println("Sesion cerrada.\n");

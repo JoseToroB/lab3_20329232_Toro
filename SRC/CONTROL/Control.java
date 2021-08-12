@@ -179,22 +179,15 @@ public class Control {
     * funcion que permite visualizar la red social
     * esta funcion no requiere parametros para ser utilizada
     */
-    /*
-    - SocialNetworkToString: Esta funcionalidad puede ser
-    ejecutada con sesión iniciada o sin ella. En caso de ejecutarla
-    con sesión iniciada debe entregar todos los elementos del
-    usuario con sesión activa (publicaciones, lista de follows,
-    reacciones, publicaciones compartidas, etc.) junto con los
-    detalles del usuario (nombre de usuario y fecha de creación
-    de cuenta. En caso de ejecutarla sin sesión iniciada, debe
-    entregar todo lo que haya en la red social (usuarios
-    registrados, listas de follows, publicaciones, etc.).
-    - PrintSocialNetwork: Debe imprimir en pantalla el string
-    obtenido de SocialNetworkToString en un formato
-    comprensible por el usuario. Evite imprimir datos sensibles
-    (como contraseñas).
-    */
     //funcion visualize
+    public void visualize(){
+        //esta funcion llama a las funciones snToString y a printSN 
+        RS redS = getRedSocial();
+        String str = redS.snToString();//llamo a snToString la cual ya deja el string con un formato legible 
+        //la funcion "printsocialnetwork" al solo tener que imprimir es un simple system.out.printl(str)
+        //por esto decidi no crearla y simplemente dejar ese println 
+        System.out.println(str);
+    }
 
 
 
@@ -208,7 +201,9 @@ public class Control {
     * @param texto contenido del comentario
     */
     //funcion comment 
-    
+    public void comment(Integer idPublicacion,Integer idComentario,String texto){
+        //separo en dos casos con un if si idPublicacion es 0 entonces es un comment a comentario
+    }
 
     /** 
     * funcion que permite dar like a post o comentario
@@ -216,6 +211,9 @@ public class Control {
     * @param idComentario id del comentario, 0 en caso de ser a publicacion
     */
     //funcion like 
+    public void like(Integer idPublicacion,Integer idComentario){
+        //separo en dos casos con un if si idPublicacion es 0 entonces es un like a comentario
+    }
     
     ///////funcion isviral ista de publicaciones que complan con el criterio K
 }

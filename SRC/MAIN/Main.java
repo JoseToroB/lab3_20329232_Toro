@@ -21,6 +21,5 @@ public class Main {
           Menu menu = new Menu(ctrl);
           System.out.print("despliego menu\n");
           menu.desplegarMenu();
-          
         }
 }

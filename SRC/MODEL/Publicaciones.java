@@ -37,7 +37,9 @@ public class Publicaciones {
     }
     //to string de una publicacion
     public String publicacionAstring(){
-        return  "Autor: "+autorPubli.getUsername()+" ID publicacion: "+ idPubli+" fecha:"+fechaPubli+"\n"+cuerpoPubli+"\n likes:"+likesPubli+"\n";
+        //falta agregar los comentarios luego
+        return  "Autor: "+autorPubli.getUsername()+" ID publicacion: "+ idPubli+" fecha:"+fechaPubli+"\n"+" cuerpo:"+cuerpoPubli+"\n likes:"+likesPubli+"\n";
+
     }
 
     public ArrayList<Comentario> getComentariosPubli() {
