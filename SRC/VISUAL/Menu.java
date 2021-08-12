@@ -152,7 +152,6 @@ public class Menu {
                             if(canEt2==0){
                                 //si no etiqueta creo la publicacion con etiquetaos vacios y listo
                                 ArrayList<String> et = new ArrayList<>();
-                                //////////////////////////
                                 ctrl.share(idPost, et);
                                 break;
                             }
@@ -170,16 +169,16 @@ public class Menu {
                                 break;
                             }
                         case 4://visualuzar ->visualize
-                        //
-                            System.out.println("visualize\n");
+                            //
+                            System.out.println("debo llamar a visualize\n");
                             break;
                         case 5://cerrar sesion ->logout
                             System.out.println("Sesion cerrada.\n");
                             //Logout
-                           //llamar a log out
+                            ctrl.logout();
                             break;
                         case 6://salir del programa ->cerrar menu 
-                            System.out.println("Elegiste salir del programa\n");
+                            System.out.println("Saliendo del programa\n");
                             cerrarMenu = true;
                             break;
                         default:
@@ -194,7 +193,4 @@ public class Menu {
         }
         input.close();
     }
-
-
-
 }

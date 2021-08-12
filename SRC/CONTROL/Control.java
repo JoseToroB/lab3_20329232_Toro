@@ -127,19 +127,26 @@ public class Control {
         RS redS = getRedSocial();
         Usuario online= redS.getUserOn();
         //recorro la lista para saber si existe el usuario  a seguir
-        int i;
-        for (i = 0; i < redS.getUsers().size();i++){ 
-            if(redS.getUsers().get(i).getUsername().equals(userAseguir)) {
-                //si encuentro un usuario con ese nombre entonces seguire con el codigo
-                ArrayList<Usuario> lista= online.getSeguidos();
-                lista.add(redS.getUsers().get(i));
-                online.setSeguidos(lista); 
-                System.out.println("Ahora sigues al usuario "+redS.getUsers().get(i).getUsername()+" \n");
-                return;//utilizo el return para cerrar el ciclo
-            }
+        if(online.getUsername().equals(userAseguir)){
+            //si se intenta seguir a si mismo se dara un mensaje de que no puede seguirse a si mismo
+            System.out.println("No puedes seguirte a ti mismo\n");
         }
-        //si no encuentro el user entonces no hago nada
-        System.out.println("Usuario a seguir inexistente\n");
+        else{
+            int i;
+            for (i = 0; i < redS.getUsers().size();i++){ 
+                if(redS.getUsers().get(i).getUsername().equals(userAseguir)) {
+                    //si encuentro un usuario con ese nombre entonces seguire con el codigo
+                    ArrayList<Usuario> lista= online.getSeguidos();
+                    lista.add(redS.getUsers().get(i));
+                    online.setSeguidos(lista); 
+                    System.out.println("Ahora sigues al usuario "+redS.getUsers().get(i).getUsername()+" \n");
+                    return;//utilizo el return para cerrar el ciclo
+                }
+            }
+            //si no encuentro el user entonces no hago nada
+            System.out.println("Usuario a seguir inexistente\n");
+        }
+        
     }
     /** 
     * funcion que permite compartir una publicacion
@@ -160,6 +167,7 @@ public class Control {
                 //la agrego a la lista de compartidos del usuario
                 online.agregarCompartidaUser(publi, etiquetados);
                 redS.getUsers().set((online.getIdUser()-1), online);
+                System.out.println("Publicacion compartida\n");
                 return;//utilizo el return para cerrar el ciclo
             }
         }
