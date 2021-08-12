@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class RS {
      //Atributos
      private ArrayList<Publicaciones> publis;
+     private ArrayList<Comentario> comentariosRS;
      private ArrayList<Usuario> users;
      private Usuario userOn;
      private boolean conectado = false;
@@ -20,6 +21,7 @@ public class RS {
     public RS(){
         //creo la RS con sus 3 arrays 
         this.publis= new ArrayList<>();
+        this.comentariosRS=new ArrayList<>();
         this.users= new ArrayList<>();
         //agregar usuarios Toro, pipo
         //una publicacion de toro
@@ -80,10 +82,19 @@ public class RS {
         this.conectado = conectado;
     }
     
+    public ArrayList<Comentario> getComentariosRS() {
+        return comentariosRS;
+    }
+
+    public void setComentariosRS(ArrayList<Comentario> comentariosRS) {
+        this.comentariosRS = comentariosRS;
+    }
+
     //metodo que permite visualizar la totalidad de la RS SocialNetworkToString
     public String snToString(){
         //esta funcion genera dos tipos de Strings, el primero con un usuario logeado y el segundo sin el usuario logeado
         int i;
+        int j;
         //usuario logeado
         if(conectado){//si hay alguien conectado entonces entrego solo lo correspondiente a este usuario
             //vista personal
@@ -91,6 +102,9 @@ public class RS {
             String strFinal="### Bienvenido a Wibogram ###\n"+"## Registrado como: "+ userOn.getUsername()+ " ##\n"+"### Tus publicaciones ###\n"; 
             for(i=0;i<userOn.getPublicacionesRealizadas().size();i++){
                 strFinal=strFinal+userOn.getPublicacionesRealizadas().get(i).publicacionAstring()+"\n";
+                for(j=0;j<userOn.getPublicacionesRealizadas().get(i).getComentarioPubli().size();j++){
+                    strFinal=strFinal+"    "+userOn.getPublicacionesRealizadas().get(i).getComentarioPubli().get(j).comentarioAstring()+"\n";
+                }
             }
             strFinal=strFinal+"### Tus seguidos ###\n"; 
             for(i=0;i<userOn.getSeguidos().size();i++){
@@ -112,6 +126,9 @@ public class RS {
                 strFinal2=strFinal2+"### Mira lo ultimo que se ha publicado ###\n";
                 for(i=0;i<getPublis().size();i++){
                     strFinal2=strFinal2+getPublis().get(i).publicacionAstring()+"\n";
+                    for(j=0;j<getPublis().get(i).getComentarioPubli().size();j++){
+                        strFinal2=strFinal2+"    "+getPublis().get(i).getComentarioPubli().get(j).comentarioAstring()+"\n";
+                    }
                 }
             }
             return strFinal2;

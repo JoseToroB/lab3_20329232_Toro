@@ -203,6 +203,41 @@ public class Control {
     //funcion comment 
     public void comment(Integer idPublicacion,Integer idComentario,String texto){
         //separo en dos casos con un if si idPublicacion es 0 entonces es un comment a comentario
+        RS redS = getRedSocial();
+        int i;
+        Comentario coment =new Comentario(redS.getUserOn(),texto);
+        coment.setComentObjetivo(idComentario);
+        coment.setPubliObjetivo(idPublicacion);
+        if(idPublicacion==0){//comment a comentario
+
+            for(i=0;i<redS.getComentariosRS().size();i++){
+               if(redS.getComentariosRS().get(i).getIdComent()==idComentario){//encuentro el comentario
+                    //agrego los comentarios
+                    Comentario objetivoC =redS.getComentariosRS().get(i);
+                    ArrayList<Comentario> lista=redS.getComentariosRS().get(i).getComentarios();
+                    lista.add(coment);
+                    objetivoC.setComentarios(lista);
+                    redS.getComentariosRS().set(i,objetivoC);
+                    redS.getComentariosRS().add(coment);
+                    //ahora actualizo el usuario
+                    redS.getUserOn().getComentariosRealizados().add(coment);
+                    System.out.println("comentado\n");
+                    return ;//cierro el ciclo
+               }
+            }
+        }
+        else{//comment a publicacion
+
+            for(i=0;i<redS.getPublis().size();i++){
+               if(redS.getPublis().get(i).getIdPubli()==idPublicacion){//encuentro la publicacion
+                    //agrego los comentarios a donde corresponde
+                    redS.getPublis().get(i).getComentariosPubli().add(coment);
+                    redS.getComentariosRS().add(coment);
+                    redS.getUserOn().getComentariosRealizados().add(coment);
+                    return;//cierro el ciclo
+               }
+            }
+        }
     }
 
     /** 
@@ -213,6 +248,26 @@ public class Control {
     //funcion like 
     public void like(Integer idPublicacion,Integer idComentario){
         //separo en dos casos con un if si idPublicacion es 0 entonces es un like a comentario
+        RS redS = getRedSocial();
+        int i;
+        int likes;
+        if(idPublicacion==0){//like a comentario
+            for(i=0;i<redS.getComentariosRS().size();i++){
+                if(redS.getComentariosRS().get(i).getIdComent()==idComentario){//encuentro el comentario
+                    likes=redS.getComentariosRS().get(i).getLikesComent();
+                    redS.getComentariosRS().get(i).setLikesComent(likes+1);
+                }
+            }
+        }
+        else{//like a publicacion
+            for(i=0;i<redS.getPublis().size();i++){
+                if(redS.getPublis().get(i).getIdPubli()==idPublicacion){//encuentro la publicacion
+                    likes=redS.getPublis().get(i).getLikesPubli();
+                    redS.getPublis().get(i).setLikesPubli(likes+1);
+                    return;//cierro el ciclo
+                }
+             }
+        }
     }
     
     ///////funcion isviral ista de publicaciones que complan con el criterio K
